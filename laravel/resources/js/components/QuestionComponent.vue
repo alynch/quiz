@@ -1,41 +1,58 @@
 <template>
-		<div style="position:relative" class="p-6 bg-white rounded-lg shadow-xl">
-                <div class="question-number">
-                    {{ id }} / {{ total }}
-                </div>
+    <div style="position:relative" class="p-6 bg-white rounded-lg shadow-xl">
+        <div class="question-number">
+            {{ id }} / {{ total }}
+        </div>
 
-				<h4 class="text-lg text-gray-900 mb-6">
-					{{ question.title }}
-				</h4>
-				<p class="text-gray-800">
-					{{ question.prompt }}
-				</p>
+        <h4 class="text-lg text-gray-900 mb-6">
+            {{ question.title }}
+        </h4>
+        <p class="text-gray-800">
+            {{ question.prompt }}
+        </p>
 
-                
-                <div v-for="(option, index) in question.options"
-                    class="text-gray-700 mt-2">
-                        <input :type="question.type" :id="index" :name="'q' + id" :value="id"/>
-                    <label :for="index">
-                        {{ option }}
-                    </label>
-                </div>
-		</div>
+        <component v-bind:is="currentType" 
+            :text="this.question.text"
+            :options="this.question.options"
+            answer=""></component>
     </div>
 </template>
 
 <script>
+import MultipleChoice from './MultipleChoice'
+import CheckBox from './CheckBox'
+import Input from './Input'
 
 export default {
+    components: {
+        MultipleChoice,
+        CheckBox,
+        Input
+    },
+
     props: ['id', 'total', 'question'],
 
  	data: function() {
-		return {
-			currentView: null
-		}
+            return {
+                currentView: null
+            }
 	},
 
+        computed: {
+            currentType: function() {
+                if (this.question.type == 'radio') {
+                    return MultipleChoice
+                } else if (this.question.type == 'checkbox') {
+                    return CheckBox
+                } else if (this.question.type == 'input') {
+                    this.question.options = this.question.prompt
+                    return Input
+                }
+            }
+        },
+
 	mounted() {
-            console.log('Component mounted.')
+            console.log(this.question)
         }
     }
 
@@ -58,30 +75,24 @@ export default {
 	text-align: center;
 }
 
+/*
+*/
+
 label {
     display: block;
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f4f4f4;
     cursor: pointer;
 }
 
 label:hover {
-    background: #ccc;
+    background: #a7cf5f;
 }
 
-input {
+input[type=radio], input[type=checkbox] {
      margin-left: -1000px;
 }
-
-input:checked {
-    argin-left: 0;
-}
-
-input:checked + label {
-    background: green;
-    color: #eee;
-}
-
 
 </style>

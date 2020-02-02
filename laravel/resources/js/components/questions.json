@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Question 1",
+        "prompt": "How do you implement an efficent sort algorithm?",
+        "type": "radio",
+        "options": [
+            "Do a binary search",
+            "Just use bubble sort!"
+        ]
+    },
+    {
+        "title": "Question 2",
+        "prompt": "What is the difference between '== and '===' in PHP?",
+        "type": "radio",
+        "options": [
+            "They are the same",
+            "One is better than the other one"
+        ]
+    },
+    {
+        "title": "Question 3",
+        "prompt": "Whas is the difference beween an 'id' and a 'class' in CSS?",
+        "type": "radio",
+        "options": [
+            "'id' is more efficient",
+            "'id' does not work on IE",
+            "All of the above"
+        ]
+    },
+    {
+        "title": "Question 4",
+        "prompt": "Which of these are valid HTTP methods?",
+        "type": "checkbox",
+        "options": [
+            "GET",
+            "POST",
+            "PATCH",
+            "PUT",
+            "HEAD",
+            "OPTIONS"
+        ]
+    },
+    {
+        "title": "Question 5",
+        "prompt": "How do you initialize a repostitory in git?",
+        "type": "radio",
+        "options": [
+            "git commit master",
+            "git init --bare",
+            "git init"
+        ]
+    },
+    {
+        "title": "Question 6",
+        "prompt": "PHP is a dying language",
+        "type": "radio",
+        "options": [
+            "True",
+            "False"
+        ]
+    },
+    {
+        "title": "Question 7",
+        "text": "How do you [1] and initialize a [2] in git?",
+        "type": "input"
+    }
+]
