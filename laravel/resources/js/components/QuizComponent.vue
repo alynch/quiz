@@ -53,8 +53,7 @@ export default {
     	    questions: questions,
 	    curr_question: 0,
 	    done: false,
-            review: false,
-            curr_component: null
+            review: false
 	}
     },
 
@@ -76,7 +75,7 @@ export default {
     },
 
     mounted() {
-        console.log('Component mounted.')
+        console.log('Quiz component mounted.')
     }
 }
 </script>

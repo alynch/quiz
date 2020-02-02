@@ -12,17 +12,12 @@
 <script>
 
 export default {
-    props: ['options', 'answer'],
+    props: ['options'],
 
     data: function() {
         return {
             answer: null
         }
-    },
-
-
-    mounted() {
-        console.log('Component mounted.')
     }
 }
 </script>

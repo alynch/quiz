@@ -54,12 +54,10 @@ export default {
                 }
             }
         },
-
 	mounted() {
-            console.log(this.question)
+            console.log('Question component mounted.')
         }
     }
-
 </script>
 
 
@@ -79,9 +77,6 @@ export default {
 	text-align: center;
 }
 
-/*
-*/
-
 label {
     display: block;
     width: 100%;
@@ -93,6 +88,7 @@ label {
 
 label:hover {
     background: #a7cf5f;
+    background: #66aa66;
 }
 
 input[type=radio], input[type=checkbox] {

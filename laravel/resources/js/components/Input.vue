@@ -35,10 +35,6 @@ export default {
         answer: function() {
             return JSON.stringify(this.answers)
         }
-    },
-
-    mounted() {
-        console.log('Component mounted.')
     }
 }
 </script>
