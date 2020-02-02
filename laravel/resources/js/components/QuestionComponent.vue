@@ -22,12 +22,14 @@
 import MultipleChoice from './MultipleChoice'
 import CheckBox from './CheckBox'
 import Input from './Input'
+import Sort from './Sort'
 
 export default {
     components: {
         MultipleChoice,
         CheckBox,
-        Input
+        Input,
+        Sort
     },
 
     props: ['id', 'total', 'question'],
@@ -47,6 +49,8 @@ export default {
                 } else if (this.question.type == 'input') {
                     this.question.options = this.question.prompt
                     return Input
+                } else if (this.question.type == 'sort') {
+                    return Sort
                 }
             }
         },
