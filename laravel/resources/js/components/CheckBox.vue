@@ -1,7 +1,7 @@
 <template>
 <div>
-    <div v-for="(option, index) in options">
-        <input type="checkbox" :id="'q'+index" :name="'q'+index" v-model="answers" :value="index"/>
+    <div v-for="(option, index) in question.options">
+        <input @change="saveAnswer" type="checkbox" :id="'q'+index" :name="'q'+index" v-model="answers" :value="index"/>
         <label :for="'q'+index">
             {{ option }}
         </label>
@@ -12,7 +12,7 @@
 <script>
 
 export default {
-    props: ['options'],
+    props: ['id', 'question'],
     data: function() {
         return {
             answers: []
@@ -23,6 +23,12 @@ export default {
         answer: function() {
             return JSON.stringify(this.answers.sort())
         }
+    },
+
+    methods: {
+        saveAnswer() {
+            localStorage.setItem('q.' + this.id, this.answer);
+	}
     }
 }
 </script>

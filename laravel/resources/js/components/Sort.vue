@@ -1,6 +1,6 @@
 <template>
 <div>
-    <draggable v-model="answers">
+    <draggable @change="saveAnswer" v-model="answers">
         <ol v-for="(option, index) in answers" :key="option">
             <li class="item">
                 {{ option }}
@@ -19,11 +19,11 @@ export default {
         draggable
     },
 
-    props: ['options'],
+    props: ['id', 'question'],
 
     data: function() {
         return {
-            answers: this.options
+            answers: this.question.options
         }
     },
 
@@ -31,6 +31,12 @@ export default {
         answer: function() {
             return JSON.stringify(this.answers)
         }
+    },
+
+    methods: {
+        saveAnswer() {
+            localStorage.setItem('q.' + this.id, this.answer);
+	}
     }
 }
 </script>

@@ -11,10 +11,9 @@
             {{ question.prompt }}
         </p>
 
-        <component v-bind:is="currentType" 
-            :text="this.question.text"
-            :options="this.question.options"
-            answer=""></component>
+        <component v-bind:is="currentType"
+            :id="this.id"
+            :question="this.question"></component>
     </div>
 </template>
 
@@ -89,6 +88,8 @@ label {
 label:hover {
     background: #a7cf5f;
     background: #66aa66;
+    background: #679436;
+    background: #74a73d;
 }
 
 input[type=radio], input[type=checkbox] {

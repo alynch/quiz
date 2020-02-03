@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-for="(part, i) in prompt">
-            <span v-if="part.type == 'blank'"><input class="input" :name="part.number" v-model="answers[part.number]"></span>
+            <span v-if="part.type == 'blank'"><input @change="saveAnswer" class="input" :name="part.number" v-model="answers[part.number]"></span>
             <span v-else>{{ part.text }}</span>
         </template>
     </div>
@@ -10,7 +10,8 @@
 <script>
 
 export default {
-    props: ['text'],
+    props: ['id', 'question'],
+
     data: function() {
         return {
             answers: []
@@ -20,7 +21,7 @@ export default {
     computed: {
         prompt: function() {
             let regex = /(\[\d*\])/
-            let parts = this.text.split(regex)
+            let parts = this.question.text.split(regex)
 
             let n = 0
             return parts.map(part => {
@@ -35,6 +36,12 @@ export default {
         answer: function() {
             return JSON.stringify(this.answers)
         }
+    },
+
+    methods: {
+        saveAnswer() {
+            localStorage.setItem('q.' + this.id, this.answer);
+	}
     }
 }
 </script>
