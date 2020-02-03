@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
 
-    <body>
+    <body style="background: #ebf2fa">
         <div id="app">
                 <quiz-component>
                 </quiz-component>
