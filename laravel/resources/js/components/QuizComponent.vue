@@ -1,6 +1,10 @@
 <template>
-    <div class="mt-12 max-w-lg mx-auto flex flex-col">
-        <h1 class="text-center text-xl">Quiz</h1>
+    <div class="mt-12 max-w-xl mx-auto flex flex-col">
+        <h1 class="text-center text-xl mb-12">Quiz</h1>
+
+        <div>
+            Time: {{ timeLeft }}
+        </div>
 
         <div v-if="!done">
             <question-component
@@ -16,7 +20,7 @@
                 </p>
 		<div class="flex justify-end mt-8">
    		    <button @click="reviewQuestions"
-			    class="flex justify-end bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+			    class="flex justify-end bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                         <span>Review</span>
 		    </button>
                  </div>
@@ -26,7 +30,7 @@
         <div class="flex justify-end mt-8">
             <div v-if="!done">
 		<button @click="nextQuestion"
-		    class="flex justify-end bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+		    class="flex justify-end bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                     <span>Next</span>
 		</button>
             </div>
@@ -53,7 +57,8 @@ export default {
     	    questions: questions,
 	    curr_question: 0,
 	    done: false,
-            review: false
+            review: false,
+            timeLeft: 10
 	}
     },
 
@@ -71,11 +76,33 @@ export default {
             this.curr_question = 0
             this.done = false
             this.review = true
+        },
+
+        countDownTimer() {
+            if(this.timeLeft > 0) {
+                setTimeout(() => {
+                    this.timeLeft -= 1
+                    this.countDownTimer()
+                }, 1000)
+            } else {
+                if (!this.done) {
+                this.nextQuestion()
+                this.timeLeft = 4
+                this.countDownTimer()
+                }
+            }
         }
     },
+
+    created() {
+           //this.countDownTimer()
+        },
 
     mounted() {
         console.log('Quiz component mounted.')
     }
 }
+
+//https://stackoverflow.com/questions/55773602/how-do-i-create-a-simple-10-seconds-countdown-in-vue-js
+
 </script>
