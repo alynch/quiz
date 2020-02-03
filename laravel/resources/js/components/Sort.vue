@@ -19,7 +19,7 @@ export default {
         draggable
     },
 
-    props: ['id', 'question'],
+    props: ['question'],
 
     data: function() {
         return {
@@ -35,7 +35,7 @@ export default {
 
     methods: {
         saveAnswer() {
-            localStorage.setItem('q.' + this.id, this.answer);
+            localStorage.setItem('q.' + this.question.id, this.answer);
 	}
     }
 }

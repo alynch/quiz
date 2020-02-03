@@ -8,7 +8,6 @@
 
         <div v-if="!done">
             <question-component
-                :id="curr_question+1"
                 :total="questions.length"
                 :question="questions[curr_question]">
             </question-component>
@@ -43,7 +42,7 @@
 import PageComponent from './PageComponent'
 import QuestionComponent from './QuestionComponent'
 
-import questions from './questions.json'
+import questionsData from './questions.json'
 
 
 export default {
@@ -54,7 +53,6 @@ export default {
     },
     data: function() {
 	return {
-    	    questions: questions,
 	    curr_question: 0,
 	    done: false,
             review: false,
@@ -91,6 +89,16 @@ export default {
                 this.countDownTimer()
                 }
             }
+        }
+    },
+
+    computed: {
+        questions: function() {
+            let i = 1
+            return questionsData.map(function(item) {
+                item.id = i++
+                return item
+            })
         }
     },
 

@@ -12,7 +12,7 @@
 <script>
 
 export default {
-    props: ['id', 'question'],
+    props: ['question'],
     data: function() {
         return {
             answers: []
@@ -27,7 +27,7 @@ export default {
 
     methods: {
         saveAnswer() {
-            localStorage.setItem('q.' + this.id, this.answer);
+            localStorage.setItem('q.' + this.question.id, this.answer);
 	}
     }
 }

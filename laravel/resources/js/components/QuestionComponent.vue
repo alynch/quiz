@@ -1,7 +1,7 @@
 <template>
     <div style="position:relative" class="p-6 bg-white rounded-lg shadow-xl">
         <div class="question-number">
-            {{ id }} / {{ total }}
+            {{ question.id }} / {{ total }}
         </div>
 
         <h4 class="text-lg text-gray-900 mb-6">
@@ -12,7 +12,6 @@
         </p>
 
         <component v-bind:is="currentType"
-            :id="this.id"
             :question="this.question"></component>
     </div>
 </template>
@@ -31,7 +30,7 @@ export default {
         Sort
     },
 
-    props: ['id', 'total', 'question'],
+    props: ['total', 'question'],
 
  	data: function() {
             return {
