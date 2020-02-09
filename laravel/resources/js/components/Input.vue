@@ -14,7 +14,7 @@ export default {
 
     data: function() {
         return {
-            nswers: []
+            answers: (this.question.savedAnswer) ? JSON.parse(this.question.savedAnswer) : []
         }
     },
 
@@ -33,10 +33,6 @@ export default {
             })
         },
 
-        answers: function() {
-            return JSON.parse(this.question.savedAnswer) || []
-        },
-
         answer: function() {
             return JSON.stringify(this.answers)
         }
@@ -45,7 +41,7 @@ export default {
     watch: {
         question: function () {
             console.log('watched input')
-            this.answers = JSON.parse(this.question.savedAnswer)
+            this.answers = JSON.parse(this.question.savedAnswer) || []
         }
     },
 

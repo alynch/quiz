@@ -19,11 +19,13 @@ export default {
         }
     },
 
-    computed: {
-        answers: function() {
-            return JSON.parse(this.answers)
-        },
+    watch: {
+        question: function () {
+            this.answers = JSON.parse(this.question.savedAnswer) || []
+        }
+    },
 
+    computed: {
         answer: function() {
             return JSON.stringify(this.answers.sort())
         }

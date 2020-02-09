@@ -41,6 +41,17 @@
         ]
     },
     {
+        "title": "Question 4a",
+        "prompt": "Which of these are valid PHP functions?",
+        "type": "checkbox",
+        "choices": [
+            {"text": "str_cmp", "score": 0.25},
+            {"text": "str_comp", "score": 0.25},
+            {"text": "cmpare_str", "score": 0.25},
+            {"text": "string",  "score": 0.25}
+        ]
+    },
+    {
         "title": "Question 5",
         "prompt": "How do you initialize a repostitory in git?",
         "type": "radio",
