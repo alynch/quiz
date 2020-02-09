@@ -9,6 +9,7 @@
         <div v-if="!done">
             <question-component
                 :total="questions.length"
+                :review="review"
                 :question="questions[currQuestion]">
             </question-component>
         </div>

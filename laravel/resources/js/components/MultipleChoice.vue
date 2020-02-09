@@ -6,13 +6,17 @@
             {{ option.text }}
         </label>
     </div>
+
+    <div v-if="review">
+        Score: {{ score }}
+    </div>
 </div>
 </template>
 
 <script>
 
 export default {
-    props: ['question'],
+    props: ['question', 'review'],
 
     data: function() {
         return {
@@ -23,6 +27,16 @@ export default {
     watch: {
         question: function () {
             this.answer = this.question.savedAnswer
+        }
+    },
+
+    computed: {
+        score: function() {
+            if (this.question.savedAnswer) {
+                return this.question.choices[this.question.savedAnswer].score
+            } else {
+                return 0;
+            }
         }
     },
 

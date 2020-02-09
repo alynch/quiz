@@ -13,6 +13,7 @@
 
         <component v-bind:is="currentType"
             :question="this.question"
+            :review="review"
             @saved="saveAnswer">
         </component>
     </div>
@@ -32,7 +33,7 @@ export default {
         Sort
     },
 
-    props: ['total', 'question'],
+    props: ['total', 'question', 'review'],
 
  	data: function() {
             return {
