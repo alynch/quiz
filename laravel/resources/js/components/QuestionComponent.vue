@@ -12,7 +12,9 @@
         </p>
 
         <component v-bind:is="currentType"
-            :question="this.question"></component>
+            :question="this.question"
+            @saved="saveAnswer">
+        </component>
     </div>
 </template>
 
@@ -34,7 +36,8 @@ export default {
 
  	data: function() {
             return {
-                currentView: null
+                currentView: null,
+                savedAnswer: null
             }
 	},
 
@@ -50,8 +53,34 @@ export default {
                 } else if (this.question.type == 'sort') {
                     return Sort
                 }
+            },
+
+            saved: function() {
+                return localStorage.getItem('q.' + this.question.id)
             }
         },
+
+        methods: {
+            saveAnswer(answer) {
+                localStorage.setItem('q.' + this.question.id, answer);
+	    }
+        },
+
+        watch: {
+            question: function (val) {
+                this.question.savedAnswer = localStorage.getItem('q.' + this.question.id)
+                //this.answer = null
+            }    
+        },
+
+        created() {
+            this.question.savedAnswer = localStorage.getItem('q.' + this.question.id)
+        },
+
+        updated() {
+            this.question.savedAnswer = localStorage.getItem('q.' + this.question.id)
+        },
+
 	mounted() {
             console.log('Question component mounted.')
         }

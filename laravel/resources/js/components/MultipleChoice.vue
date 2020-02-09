@@ -1,9 +1,9 @@
 <template>
 <div>
-    <div v-for="(option, index) in question.options">
+    <div v-for="(option, index) in question.choices">
         <input @change="saveAnswer" type="radio" :id="'q'+index" v-model="answer" name="q" :value="index"/>
         <label :for="'q'+index">
-            {{ option }}
+            {{ option.text }}
         </label>
     </div>
 </div>
@@ -16,13 +16,19 @@ export default {
 
     data: function() {
         return {
-            answer: null
+            answer: this.question.savedAnswer
+        }
+    },
+
+    watch: {
+        question: function () {
+            this.answer = this.question.savedAnswer
         }
     },
 
     methods: {
         saveAnswer() {
-            localStorage.setItem('q.' + this.question.id, this.answer);
+            this.$emit('saved', this.answer)
 	}
     }
 }

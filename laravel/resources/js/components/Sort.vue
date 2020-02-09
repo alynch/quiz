@@ -1,9 +1,9 @@
 <template>
 <div>
-    <draggable @change="saveAnswer" v-model="answers">
-        <ol v-for="(option, index) in answers" :key="option">
-            <li class="item">
-                {{ option }}
+    <draggable tag="ol" @change="saveAnswer" :list="list">
+            <li class="item" v-for="option in list" :key="option.name">
+                {{ option.name }}
+                {{ option.id }}
             </li>
         </ol>
     </draggable>
@@ -28,14 +28,22 @@ export default {
     },
 
     computed: {
+        list: function() {
+            return this.question.choices.map((item, index) => {
+                return { name: item.text, id: index }
+            })
+        },
+
         answer: function() {
-            return JSON.stringify(this.answers)
+            return JSON.stringify(this.list)
         }
     },
 
     methods: {
         saveAnswer() {
-            localStorage.setItem('q.' + this.question.id, this.answer);
+            let results = JSON.stringify(this.list.map(x => x.id))
+            console.log(results)
+            this.$emit('saved', results)
 	}
     }
 }

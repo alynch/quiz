@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-for="(part, i) in prompt">
-            <span v-if="part.type == 'blank'"><input @change="saveAnswer" class="input" :name="part.number" v-model="answers[part.number]"></span>
+            <span v-if="part.type == 'blank'"><input @change="saveAnswer" class="input" :name="'q'+part.number" v-model="answers[part.number]"></span>
             <span v-else>{{ part.text }}</span>
         </template>
     </div>
@@ -14,7 +14,7 @@ export default {
 
     data: function() {
         return {
-            answers: []
+            nswers: []
         }
     },
 
@@ -33,14 +33,25 @@ export default {
             })
         },
 
+        answers: function() {
+            return JSON.parse(this.question.savedAnswer) || []
+        },
+
         answer: function() {
             return JSON.stringify(this.answers)
         }
     },
 
+    watch: {
+        question: function () {
+            console.log('watched input')
+            this.answers = JSON.parse(this.question.savedAnswer)
+        }
+    },
+
     methods: {
         saveAnswer() {
-            localStorage.setItem('q.' + this.question.id, this.answer);
+            this.$emit('saved', this.answer)
 	}
     }
 }
