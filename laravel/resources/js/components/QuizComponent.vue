@@ -9,7 +9,7 @@
         <div v-if="!done">
             <question-component
                 :total="questions.length"
-                :question="questions[curr_question]">
+                :question="questions[currQuestion]">
             </question-component>
         </div>
         <div v-else>
@@ -53,25 +53,26 @@ export default {
     },
     data: function() {
 	return {
-	    curr_question: 0,
+	    currQuestion: 0,
 	    done: false,
             review: false,
-            timeLeft: 10
+            durationPerQuestion: 10,
+            timeLeft: this.testDuration
 	}
     },
 
     methods: {
         nextQuestion() {
-	    if (this.curr_question < this.questions.length) {
-		this.curr_question++
+	    if (this.currQuestion < this.questions.length) {
+		this.currQuestion++
 	    }
 
-	    if (this.curr_question == this.questions.length) {
+	    if (this.currQuestion == this.questions.length) {
 	        this.done = true
 	    }
 	},
         reviewQuestions() {
-            this.curr_question = 0
+            this.currQuestion = 0
             this.done = false
             this.review = true
         },
@@ -85,7 +86,7 @@ export default {
             } else {
                 if (!this.done) {
                 this.nextQuestion()
-                this.timeLeft = 4
+                this.timeLeft = this.durationPerQuestion
                 this.countDownTimer()
                 }
             }
@@ -103,8 +104,8 @@ export default {
     },
 
     created() {
-           //this.countDownTimer()
-        },
+       //this.countDownTimer()
+    },
 
     mounted() {
         console.log('Quiz component mounted.')
