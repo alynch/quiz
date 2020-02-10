@@ -6,13 +6,16 @@
             {{ option.text }}
         </label>
     </div>
+    <div v-if="review">
+        Score: {{ score }}
+    </div>
 </div>
 </template>
 
 <script>
 
 export default {
-    props: ['question'],
+    props: ['question', 'review'],
     data: function() {
         return {
             answers: JSON.parse(this.question.savedAnswer) || []
@@ -28,8 +31,21 @@ export default {
     computed: {
         answer: function() {
             return JSON.stringify(this.answers.sort())
+        },
+
+        score: function() {
+            let score = 0
+            let answers  = JSON.parse(this.question.savedAnswer)
+
+            for (let i=0; i < this.question.choices.length; i++) {
+                if (answers.includes(i)) {
+                    score += this.question.choices[i].score
+                }
+            }
+            return score
         }
     },
+
 
     methods: {
         saveAnswer() {

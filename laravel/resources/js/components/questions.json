@@ -72,23 +72,33 @@
     },
     {
         "title": "Question 7",
+        "type": "input",
         "text": "How do you [1] and initialize a [2] in git?",
-        "type": "input"
+        "answer": [
+            [
+                {"text": "initialize", "score": 1},
+                {"text": "initialise", "score": 0.75}
+            ],
+            [
+                {"text": "delete", "score": 1}
+            ]
+        ]
     },
     {
         "title": "Question 8",
+        "type": "input",
         "text": "There are three valleys in Central and Southern Asia: The [] Valley, The Tigris/Euphrates Valley, and the Huang He Valley. India is a peninsula which looks like an upside down []. On the Western shore of India lies the [] Ocean. It is the [] ocean of all. This is mainly because the Gulf Stream passes through. Along the western shore of India, there are two port cities. One is the large, modern city of [] (Bombay). The other is another large city called Calcutta. The capital of India is [] []. To the north, the [] Mountains provide a natural barrier between India and []. The world's tallest mountain, Mt. [], is in the Himalayas. It lies in the small country of [] which lies to the northeast of India. There are three main rivers in India. They are the Indus River, the [] River and the Brahmaputra River. The Indus river flows [] miles from the base of the Himalayas to the coast. The Indian people had a strict social plan called the [] system. There were [] castes of people. If one tried to rise above his caste, he became and outcaste, or an [].",
-        "answer": "['Indus', 'triangle', 'Indian', 'warmest', 'Mumbai', 'Delhi', 'Himalayan', 'China', 'Everest', 'Nepal', 'Ganges', '900', 'Caste', '4', 'untouchable'",
-        "type": "input"
+        "answer": "['Indus', 'triangle', 'Indian', 'warmest', 'Mumbai', 'Delhi', 'Himalayan', 'China', 'Everest', 'Nepal', 'Ganges', '900', 'Caste', '4', 'untouchable'"
     },
         {
         "title": "Question 9",
+        "type": "sort",
         "prompt": "Sort in order of performance in JS:",
         "choices": [
             {"text": "for loop"},
             {"text": "map"},
             {"text": "forEach"}
         ],
-        "type": "sort"
+        "answer": "[0, 2, 1]"
     }
 ]
