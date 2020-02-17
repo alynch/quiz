@@ -30,7 +30,7 @@
         <div class="flex justify-end mt-8">
             <div v-if="!done">
 		<button @click="nextQuestion"
-		    class="flex justify-end bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+		    class="flex justify-end bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
                     <span>Next</span>
 		</button>
             </div>

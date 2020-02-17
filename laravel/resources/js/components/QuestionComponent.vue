@@ -98,31 +98,11 @@ export default {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 	padding: 5px;
 	position: absolute;
-	top: 2em;
-	right: -3em;
+	top: 1em;
+	right: -2em;
 	width: 4em;
 	margin-left: 1em;
 	text-align: center;
-}
-
-label {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    background: #f4f4f4;
-    cursor: pointer;
-}
-
-label:hover {
-    background: #a7cf5f;
-    background: #66aa66;
-    background: #679436;
-    background: #74a73d;
-}
-
-input[type=radio], input[type=checkbox] {
-     margin-left: -1000px;
 }
 
 </style>
