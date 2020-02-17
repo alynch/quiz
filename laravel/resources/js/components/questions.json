@@ -74,11 +74,11 @@
     {
         "title": "Question 7",
         "type": "input",
-        "text": "How do you [1] and initialize a [2] in git?",
+        "text": "To obtain a copy or a git repository in your local computer, you have to [] it.",
         "answer": [
             [
-                {"text": "initialize", "score": 1},
-                {"text": "initialise", "score": 0.75}
+                {"text": "clone", "score": 1},
+                {"text": "initialize", "score": 0.5}
             ],
             [
                 {"text": "delete", "score": 1}
@@ -103,7 +103,7 @@
             [{"text": "Nepal", "score": 1}],
             [{"text": "Ganges", "score": 1}],
             [{"text": "900", "score": 1}],
-            [{"text": "Caste", "score": 1}],
+            [{"text": "Caste", "score": 1}, {"text": "caste", "score": 1}],
             [{"text": "4", "score": 1}, {"text": "four", "score": 1}],
             [{"text": "untouchable", "score": 1}]
         ]

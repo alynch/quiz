@@ -90,6 +90,7 @@ div {
 }
 
 .input {
+    padding-left: 3px;
     border: 1px solid #ccc;
     color: #666;
     max-width: 6em;
