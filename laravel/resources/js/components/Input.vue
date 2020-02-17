@@ -4,13 +4,17 @@
             <span v-if="part.type == 'blank'"><input @change="saveAnswer" class="input" :name="'q'+part.number" v-model="answers[part.number]"></span>
             <span v-else>{{ part.text }}</span>
         </template>
+
+    <div v-if="review">
+        Score: {{ score }}
+    </div>
     </div>
 </template>
 
 <script>
 
 export default {
-    props: ['question'],
+    props: ['question', 'review'],
 
     data: function() {
         return {
@@ -35,6 +39,31 @@ export default {
 
         answer: function() {
             return JSON.stringify(this.answers)
+        },
+
+        score: function() {
+            if (!this.question.savedAnswer) {
+                return 0
+            }
+
+            let that = this
+            let total = 0
+            let answers = JSON.parse(this.question.savedAnswer)
+
+            for (let i=0; i < answers.length; i++) {
+                console.log(answers[i])
+                if (!that.question.answer[i]) {
+                    console.log(i)
+                    continue
+                }
+                that.question.answer[i].forEach(function(item) {
+                    if (item.text == answers[i]) {
+                        total += item.score
+                        console.log(item.text)
+                    }
+                })
+            }
+            return total
         }
     },
 
@@ -54,7 +83,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 
 div {
     line-height: 1.8;
