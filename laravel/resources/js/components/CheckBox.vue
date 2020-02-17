@@ -20,13 +20,13 @@ export default {
     props: ['question', 'review'],
     data: function() {
         return {
-            answers: JSON.parse(this.question.savedAnswer) || []
+            answers: (this.question.savedAnswer) ? JSON.parse(this.question.savedAnswer) : []
         }
     },
 
     watch: {
         question: function () {
-            this.answers = JSON.parse(this.question.savedAnswer) || []
+            this.answers = (this.question.savedAnswer) ? JSON.parse(this.question.savedAnswer) : []
         }
     },
 
