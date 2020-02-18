@@ -2,9 +2,12 @@
     <div class="mt-12 max-w-xl mx-auto flex flex-col">
         <h1 class="text-center text-xl mb-12">Quiz</h1>
 
+        <!--
         <div>
             Time: {{ timeLeft }}
         </div>
+        -->
+
 
         <div v-if="!done">
             <question-component
@@ -18,6 +21,12 @@
                 <p>
                     You have finished the quiz. Do you want to review the questions?
                 </p>
+		<div class="flex mt-8">
+   		    <button @click="clearAnswers"
+			    class="flex justify-start bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        <span>Clear answers</span>
+		    </button>
+                 </div>
 		<div class="flex justify-end mt-8">
    		    <button @click="reviewQuestions"
 			    class="flex justify-end bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
@@ -27,13 +36,17 @@
             </page-component>
         </div>
 
-        <div class="flex justify-end mt-8">
-            <div v-if="!done">
-		<button @click="nextQuestion"
-		    class="flex justify-end bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-                    <span>Next</span>
-		</button>
-            </div>
+        <div v-if="!done" class="flex justify-between mt-8">
+            <button v-if="canBackTrack" @click="prevQuestion"
+                class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
+                <span>Prev</span>
+            </button>
+            <div v-else></div>
+
+            <button @click="nextQuestion"
+                class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
+                <span>Next</span>
+            </button>
 	</div>
     </div>
 </template>
@@ -58,11 +71,16 @@ export default {
 	    done: false,
             review: false,
             durationPerQuestion: 10,
+            canBackTrack: true,
             timeLeft: this.testDuration
 	}
     },
 
     methods: {
+        clearAnswers() {
+            localStorage.clear()
+        },
+
         nextQuestion() {
 	    if (this.currQuestion < this.questions.length) {
 		this.currQuestion++
@@ -72,6 +90,13 @@ export default {
 	        this.done = true
 	    }
 	},
+
+        prevQuestion() {
+	    if (this.currQuestion > 0) {
+		this.currQuestion--
+	    }
+	},
+
         reviewQuestions() {
             this.currQuestion = 0
             this.done = false
