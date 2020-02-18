@@ -37,6 +37,11 @@ export default {
 
         score: function() {
             let score = 0
+
+            if (!this.question.savedAnswer) {
+                return 0
+            }
+
             let answers  = JSON.parse(this.question.savedAnswer)
 
             for (let i=0; i < this.question.choices.length; i++) {
