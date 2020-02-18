@@ -1,12 +1,16 @@
 <template>
 <div>
     <draggable tag="ol" @change="saveAnswer" :list="list">
-            <li class="item" v-for="option in list" :key="option.name">
+            <li class="item" v-for="option in list" :key="option.id">
                 {{ option.name }}
-                {{ option.id }}
             </li>
         </ol>
     </draggable>
+
+    <div v-if="review">
+        Score: {{ score }}
+    </div>
+
 </div>
 </template>
 
@@ -19,33 +23,61 @@ export default {
         draggable
     },
 
-    props: ['question'],
+    props: ['review', 'question'],
 
     data: function() {
         return {
-            answers: this.question.options
+            answers: this.question.choices,
+            list: []
         }
     },
 
     computed: {
-        list: function() {
-            return this.question.choices.map((item, index) => {
-                return { name: item.text, id: index }
-            })
+        answer: function() {
+            return JSON.stringify(this.answers)
         },
 
-        answer: function() {
-            return JSON.stringify(this.list)
+        score: function() {
+            if (!this.question.savedAnswer) {
+                return 0;
+            }
+
+            let a = JSON.stringify(this.list.map(x => x.id))
+            let b = this.question.savedAnswer
+            console.log('A:' + a)
+            console.log('B: '+ b)
+
+            if (a === b) {
+                return 1
+            } else {
+                return 0
+            }
         }
     },
 
     methods: {
         saveAnswer() {
             let results = JSON.stringify(this.list.map(x => x.id))
-            console.log(results)
             this.$emit('saved', results)
 	}
-    }
+    },
+
+    created() {
+
+        this.list = this.question.choices.map((item, index) => {
+                return { name: item.text, id: index }
+            })
+
+            // if we have a saved answer, sort values according to it
+            if (this.question.savedAnswer) {
+                let sortArray = JSON.parse(this.question.savedAnswer)
+                
+                this.list.sort(function(a, b){
+                    return sortArray.indexOf(a.id) - sortArray.indexOf(b.id);
+                });
+            }
+    },
+
 }
 </script>
 

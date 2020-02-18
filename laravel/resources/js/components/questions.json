@@ -33,12 +33,12 @@
         "prompt": "Which of these are valid HTTP methods?",
         "type": "checkbox",
         "choices": [
-            {"text": "GET", "score": 0.25},
-            {"text": "POST", "score": 0.25},
-            {"text": "PATCH", "score": 0.25},
-            {"text": "PUT",  "score": 0.25},
-            {"text": "HEAD",  "score": 0.25},
-            {"text": "OPTIONS", "score": 0.25}
+            {"text": "GET",  "score": 0.1666},
+            {"text": "POST", "score": 0.1666},
+            {"text": "PATCH", "score": 0.1666},
+            {"text": "PUT",   "score": 0.1666},
+            {"text": "HEAD",  "score": 0.1666},
+            {"text": "OPTIONS", "score": 0.1666}
         ]
     },
     {
@@ -118,6 +118,6 @@
             {"text": "map"},
             {"text": "forEach"}
         ],
-        "answer": "[0, 2, 1]"
+        "answer": "[0,2,1]"
     }
 ]
